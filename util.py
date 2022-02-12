@@ -199,7 +199,8 @@ def load_pickle(pickle_file):
     return pickle_data
 
 def load_adj(pkl_filename):
-    sensor_ids, sensor_id_to_ind, adj = load_pickle(pkl_filename)
+    # sensor_ids, sensor_id_to_ind, adj = load_pickle(pkl_filename)
+    adj = load_pickle(pkl_filename)
     return adj
 
 

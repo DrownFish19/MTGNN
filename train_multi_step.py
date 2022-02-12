@@ -70,7 +70,7 @@ parser.add_argument('--runs',type=int,default=10,help='number of runs')
 
 args = parser.parse_args()
 torch.set_num_threads(3)
-
+os.makedirs(args.save,exist_ok=True)
 
 def main(runid):
     # torch.manual_seed(args.seed)

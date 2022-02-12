@@ -54,6 +54,9 @@ def generate_graph_seq2seq_io_data(
 
 
 def generate_train_val_test(args):
+    # df = pandas.read_excel('data/HZME_OUTFLOW.xlsx', engine='openpyxl')
+    # df.set_index("index", inplace=True)
+    # df.to_hdf("HZME_OUTFLOW.h5", key='df',mode='w',complevel=5)
     df = pd.read_hdf(args.traffic_df_filename)
     # 0 is the latest observed sample.
     x_offsets = np.sort(
@@ -78,7 +81,7 @@ def generate_train_val_test(args):
     # for the rest: 7/8 is used for training, and 1/8 is used for validation.
     num_samples = x.shape[0]
     num_test = round(num_samples * 0.2)
-    num_train = round(num_samples * 0.7)
+    num_train = round(num_samples * 0.6)
     num_val = num_samples - num_test - num_train
 
     # train
