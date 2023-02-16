@@ -54,9 +54,9 @@ def generate_graph_seq2seq_io_data(
 
 
 def generate_train_val_test(args):
-    df = pd.read_excel('data/PEMS04_export_data.xlsx', engine='openpyxl')
-    df.set_index("index", inplace=True)
-    df.to_hdf("data/PEMS04.h5", key='df', mode='w', complevel=5)
+    # df = pd.read_excel('data/PEMS04_export_data.xlsx', engine='openpyxl')
+    # df.set_index("index", inplace=True)
+    # df.to_hdf("data/PEMS04.h5", key='df', mode='w', complevel=5)
     df = pd.read_hdf(args.traffic_df_filename)
     # 0 is the latest observed sample.
     x_offsets = np.sort(
