@@ -18,7 +18,7 @@ def str_to_bool(value):
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--device',type=str,default='cuda:1',help='')
+parser.add_argument('--device',type=str,default='0',help='')
 parser.add_argument('--data',type=str,default='data/METR-LA',help='data path')
 
 parser.add_argument('--adj_data', type=str,default='data/sensor_graph/adj_mx.pkl',help='adj data path')
@@ -66,11 +66,12 @@ parser.add_argument('--num_split',type=int,default=1,help='number of splits for 
 
 parser.add_argument('--runs',type=int,default=10,help='number of runs')
 
-
-
 args = parser.parse_args()
 torch.set_num_threads(3)
 os.makedirs(args.save,exist_ok=True)
+
+os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda
+
 
 def main(runid):
     # torch.manual_seed(args.seed)
@@ -78,7 +79,8 @@ def main(runid):
     # torch.backends.cudnn.benchmark = False
     # np.random.seed(args.seed)
     #load data
-    device = torch.device(args.device)
+    device = torch.device("cuda:0")
+    # device = torch.device(args.device)
     dataloader = load_dataset(args.data, args.batch_size, args.batch_size, args.batch_size)
     scaler = dataloader['scaler']
 
